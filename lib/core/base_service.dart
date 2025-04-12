@@ -1,15 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:nuvilab_assignment/constant/constant.dart';
+import 'package:nuvilab_assignment/core/api_client.dart';
 
 import '../model/api_response.dart';
 
 abstract class BaseService<T> {
-  final Dio dio = Dio(
-    BaseOptions(
-      baseUrl: Constant.baseUrl,
-      headers: {'Content-Type': 'application/json'},
-    ),
-  );
+  final Dio dio = ApiClient().dio;
   String _url = "";
 
   Future<Response<dynamic>> request();
@@ -37,16 +32,8 @@ abstract class BaseService<T> {
 
     Response<dynamic> response = await request();
 
-    if (response.statusCode == 200 ||
-        response.statusCode == 201 ||
-        response.statusCode == 204 ||
-        response.statusCode == 400 ||
-        response.statusCode == 404 ||
-        response.statusCode == 403 ||
-        response.statusCode == 500 ||
-        response.statusCode == 501 ||
-        response.statusCode == 502) {
-      return success(response.data);
-    }
+    /// dio interceptor에서 http status check
+    /// 성공시 success() 호출
+    return success(response.data);
   }
 }
