@@ -43,6 +43,24 @@ Future<void> _handleHive() async {
 Future<void> _handleFcm() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  /// 백그라운드에서 사용자가 알림 클릭시 트리거
+  /// 시간상 사용자가 알림클릭시만 구현
+  /// 해당 stream을 처리 안하면 백그라운드에서 사용자가 알림을 클릭해서 이벤트 처리가 안됨
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    final data = message.data;
+    // todo 추후 enum값으로 페이지 변경 예정
+    final route = data['route'] as String?;
+
+    if (route != null) {
+      final context = MyApp.navigatorKey.currentContext;
+      if (context != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.pushNamed(context, route);
+        });
+      }
+    }
+  });
+
   /// 앱이 포그라운드 상태일 때 알림 수신
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     // todo 추후 포그라운드 알림 처리 및 딥링크 처리
