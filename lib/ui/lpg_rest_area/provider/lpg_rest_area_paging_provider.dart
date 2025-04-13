@@ -28,19 +28,31 @@ class LpgRestAreaPagingController
   }
 
   Future<void> _fetchPage(int pageKey) async {
-    final ApiResponseModel res = await lpgRestAreaRepository.getLpgRestArea(
-      page: pageKey,
-      size: 20,
-    );
+    try {
+      final ApiResponseModel res = await lpgRestAreaRepository.getLpgRestArea(
+        page: pageKey,
+        size: 20,
+      );
 
-    final newItems = res.list;
+      final newItems = res.list;
 
-    final isLastPage = res.pageSize == res.pageNo;
+      final isLastPage = res.pageSize == res.pageNo;
 
-    if (isLastPage) {
-      state.appendLastPage(newItems);
-    } else {
-      state.appendPage(newItems, pageKey + 1);
+      if (isLastPage) {
+        state.appendLastPage(newItems);
+      } else {
+        state.appendPage(newItems, pageKey + 1);
+      }
+    } on CacheFailure catch (e) {
+      /// 캐시 관련 에러처리
+      state.error = e.message;
+      state.appendLastPage([]);
+    } on DioException catch (e) {
+      /// http상태별로 에러 처리
+      state.error = e.error;
+    } catch (error) {
+      /// nullable 데이터나 예상치 못한 에러 처리
+      state.error = "예상치 못한 에러가 발생하였습니다.";
     }
   }
 }
