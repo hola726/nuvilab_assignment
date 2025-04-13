@@ -25,21 +25,6 @@ Future<void> _handleHive() async {
 Future<void> _handleFcm() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  /// 백그라운드에서 사용자가 알림 클릭시 트리거
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    final data = message.data;
-    // todo 추후 enum값으로 페이지 변경 예정
-    final route = data['route'] as String?;
-
-    if (route != null) {
-      final context = MyApp.navigatorKey.currentContext;
-      if (context != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.pushNamed(context, "/lpg_rest_area_page");
-        });
-      }
-    }
-  });
 
   /// 앱이 포그라운드 상태일 때 알림 수신
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
