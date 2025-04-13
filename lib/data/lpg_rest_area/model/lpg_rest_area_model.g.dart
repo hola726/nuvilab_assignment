@@ -12,8 +12,8 @@ _LpgRestAreaModel _$LpgRestAreaModelFromJson(Map<String, dynamic> json) =>
       serviceAreaCode: json['serviceAreaCode'] as String,
       routeName: json['routeName'] as String,
       serviceAreaName: json['serviceAreaName'] as String,
-      oilCompany: json['oilCompany'] as String,
-      location: json['location'] as String,
+      oilCompany: json['oilCompany'] as String?,
+      location: json['location'] as String?,
       svarAddr: json['svarAddr'] as String?,
     );
 

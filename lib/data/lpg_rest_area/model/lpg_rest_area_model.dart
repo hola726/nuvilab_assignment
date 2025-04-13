@@ -11,8 +11,11 @@ abstract class LpgRestAreaModel with _$LpgRestAreaModel {
     required String serviceAreaCode, // 휴게소/주유소코드
     required String routeName, // 노선명
     required String serviceAreaName, // 휴게소/주유소명
-    required String oilCompany, // 정유사
-    required String location, // 위치
+    /// nullable 데이터 처리
+    String? oilCompany, // 정유사
+    /// nullable 데이터 처리
+    String? location, // 위치
+    /// nullable 데이터 처리
     String? svarAddr, // 휴게소주소
   }) = _LpgRestAreaModel;
 

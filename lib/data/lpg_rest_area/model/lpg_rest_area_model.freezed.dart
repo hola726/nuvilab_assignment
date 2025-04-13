@@ -20,8 +20,11 @@ mixin _$LpgRestAreaModel {
  String get serviceAreaCode;// 휴게소/주유소코드
  String get routeName;// 노선명
  String get serviceAreaName;// 휴게소/주유소명
- String get oilCompany;// 정유사
- String get location;// 위치
+/// nullable 데이터 처리
+ String? get oilCompany;// 정유사
+/// nullable 데이터 처리
+ String? get location;// 위치
+/// nullable 데이터 처리
  String? get svarAddr;
 /// Create a copy of LpgRestAreaModel
 /// with the given fields replaced by the non-null parameter values.
@@ -55,7 +58,7 @@ abstract mixin class $LpgRestAreaModelCopyWith<$Res>  {
   factory $LpgRestAreaModelCopyWith(LpgRestAreaModel value, $Res Function(LpgRestAreaModel) _then) = _$LpgRestAreaModelCopyWithImpl;
 @useResult
 $Res call({
- String routeCode, String serviceAreaCode, String routeName, String serviceAreaName, String oilCompany, String location, String? svarAddr
+ String routeCode, String serviceAreaCode, String routeName, String serviceAreaName, String? oilCompany, String? location, String? svarAddr
 });
 
 
@@ -72,15 +75,15 @@ class _$LpgRestAreaModelCopyWithImpl<$Res>
 
 /// Create a copy of LpgRestAreaModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? routeCode = null,Object? serviceAreaCode = null,Object? routeName = null,Object? serviceAreaName = null,Object? oilCompany = null,Object? location = null,Object? svarAddr = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? routeCode = null,Object? serviceAreaCode = null,Object? routeName = null,Object? serviceAreaName = null,Object? oilCompany = freezed,Object? location = freezed,Object? svarAddr = freezed,}) {
   return _then(_self.copyWith(
 routeCode: null == routeCode ? _self.routeCode : routeCode // ignore: cast_nullable_to_non_nullable
 as String,serviceAreaCode: null == serviceAreaCode ? _self.serviceAreaCode : serviceAreaCode // ignore: cast_nullable_to_non_nullable
 as String,routeName: null == routeName ? _self.routeName : routeName // ignore: cast_nullable_to_non_nullable
 as String,serviceAreaName: null == serviceAreaName ? _self.serviceAreaName : serviceAreaName // ignore: cast_nullable_to_non_nullable
-as String,oilCompany: null == oilCompany ? _self.oilCompany : oilCompany // ignore: cast_nullable_to_non_nullable
-as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as String,svarAddr: freezed == svarAddr ? _self.svarAddr : svarAddr // ignore: cast_nullable_to_non_nullable
+as String,oilCompany: freezed == oilCompany ? _self.oilCompany : oilCompany // ignore: cast_nullable_to_non_nullable
+as String?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as String?,svarAddr: freezed == svarAddr ? _self.svarAddr : svarAddr // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -92,7 +95,7 @@ as String?,
 @JsonSerializable()
 
 class _LpgRestAreaModel implements LpgRestAreaModel {
-   _LpgRestAreaModel({required this.routeCode, required this.serviceAreaCode, required this.routeName, required this.serviceAreaName, required this.oilCompany, required this.location, this.svarAddr});
+   _LpgRestAreaModel({required this.routeCode, required this.serviceAreaCode, required this.routeName, required this.serviceAreaName, this.oilCompany, this.location, this.svarAddr});
   factory _LpgRestAreaModel.fromJson(Map<String, dynamic> json) => _$LpgRestAreaModelFromJson(json);
 
 @override final  String routeCode;
@@ -103,10 +106,13 @@ class _LpgRestAreaModel implements LpgRestAreaModel {
 // 노선명
 @override final  String serviceAreaName;
 // 휴게소/주유소명
-@override final  String oilCompany;
+/// nullable 데이터 처리
+@override final  String? oilCompany;
 // 정유사
-@override final  String location;
+/// nullable 데이터 처리
+@override final  String? location;
 // 위치
+/// nullable 데이터 처리
 @override final  String? svarAddr;
 
 /// Create a copy of LpgRestAreaModel
@@ -142,7 +148,7 @@ abstract mixin class _$LpgRestAreaModelCopyWith<$Res> implements $LpgRestAreaMod
   factory _$LpgRestAreaModelCopyWith(_LpgRestAreaModel value, $Res Function(_LpgRestAreaModel) _then) = __$LpgRestAreaModelCopyWithImpl;
 @override @useResult
 $Res call({
- String routeCode, String serviceAreaCode, String routeName, String serviceAreaName, String oilCompany, String location, String? svarAddr
+ String routeCode, String serviceAreaCode, String routeName, String serviceAreaName, String? oilCompany, String? location, String? svarAddr
 });
 
 
@@ -159,15 +165,15 @@ class __$LpgRestAreaModelCopyWithImpl<$Res>
 
 /// Create a copy of LpgRestAreaModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? routeCode = null,Object? serviceAreaCode = null,Object? routeName = null,Object? serviceAreaName = null,Object? oilCompany = null,Object? location = null,Object? svarAddr = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? routeCode = null,Object? serviceAreaCode = null,Object? routeName = null,Object? serviceAreaName = null,Object? oilCompany = freezed,Object? location = freezed,Object? svarAddr = freezed,}) {
   return _then(_LpgRestAreaModel(
 routeCode: null == routeCode ? _self.routeCode : routeCode // ignore: cast_nullable_to_non_nullable
 as String,serviceAreaCode: null == serviceAreaCode ? _self.serviceAreaCode : serviceAreaCode // ignore: cast_nullable_to_non_nullable
 as String,routeName: null == routeName ? _self.routeName : routeName // ignore: cast_nullable_to_non_nullable
 as String,serviceAreaName: null == serviceAreaName ? _self.serviceAreaName : serviceAreaName // ignore: cast_nullable_to_non_nullable
-as String,oilCompany: null == oilCompany ? _self.oilCompany : oilCompany // ignore: cast_nullable_to_non_nullable
-as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as String,svarAddr: freezed == svarAddr ? _self.svarAddr : svarAddr // ignore: cast_nullable_to_non_nullable
+as String,oilCompany: freezed == oilCompany ? _self.oilCompany : oilCompany // ignore: cast_nullable_to_non_nullable
+as String?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as String?,svarAddr: freezed == svarAddr ? _self.svarAddr : svarAddr // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
