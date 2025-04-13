@@ -30,14 +30,14 @@ class LpgRestAreaPage extends ConsumerWidget {
         firstPageErrorIndicatorBuilder:
             (_) => Center(
               child: Text(
-                'Error loading data',
+                lpgRestAreaPagingController.error,
                 style: TextStyle(color: Colors.red),
               ),
             ),
         newPageErrorIndicatorBuilder:
             (_) => Center(
               child: Text(
-                'Error loading more data',
+                lpgRestAreaPagingController.error,
                 style: TextStyle(color: Colors.red),
               ),
             ),

@@ -17,7 +17,7 @@ class GetLpgRestArea extends BaseService {
 
   @override
   String setUrl() {
-    return 'business/lpgServiceAreaInfo?pageNo=$page&numOfRows=$size&type=json&key=${Constant.serviceKey}';
+    return 'business/lpgServiceAreaInfo?pageNo=$page&numOfRows=$size&type=json&key=${Constant.apiKey}';
   }
 
   @override

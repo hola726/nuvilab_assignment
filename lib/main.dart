@@ -43,7 +43,6 @@ Future<void> _handleHive() async {
 Future<void> _handleFcm() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-
   /// 앱이 포그라운드 상태일 때 알림 수신
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     // todo 추후 포그라운드 알림 처리 및 딥링크 처리
