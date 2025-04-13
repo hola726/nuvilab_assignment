@@ -5,18 +5,22 @@ import 'package:nuvilab_assignment/data/lpg_rest_area/lpg_rest_area_repository.d
 import 'package:nuvilab_assignment/data/lpg_rest_area/model/lpg_rest_area_model.dart';
 import 'package:nuvilab_assignment/model/api_response.dart';
 
-final homePagingProvider = StateNotifierProvider.autoDispose<
-  HomePagingController,
+import '../../../data/lpg_rest_area/service/lpg_rest_area_local_service.dart';
+
+final lpgRestAreaPagingProvider = StateNotifierProvider.autoDispose<
+  LpgRestAreaPagingController,
   PagingController<int, LpgRestAreaModel>
 >((ref) {
-  return HomePagingController(lpgRestAreaRepository: LpgRestAreaRepository());
+  return LpgRestAreaPagingController(
+    lpgRestAreaRepository: LpgRestAreaRepository(),
+  );
 });
 
 /// 홈 페이지 페이지 네이션을 위한 컨트롤러
-class HomePagingController
+class LpgRestAreaPagingController
     extends StateNotifier<PagingController<int, LpgRestAreaModel>> {
   final LpgRestAreaRepository lpgRestAreaRepository;
-  HomePagingController({required this.lpgRestAreaRepository})
+  LpgRestAreaPagingController({required this.lpgRestAreaRepository})
     : super(PagingController(firstPageKey: 0)) {
     state.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
