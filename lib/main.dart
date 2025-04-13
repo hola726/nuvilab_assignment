@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +17,22 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _handleHive();
   await _handleFcm();
+  _handleCrashlytics();
+
   runApp(ProviderScope(child: const MyApp()));
+}
+
+void _handleCrashlytics() async {
+  FlutterError.onError = (errorDetails) {
+    /// 프레임워크 내에서 발생하는 모든 오류를 자동으로 포착
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  /// 비동기 오류를 포착
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 }
 
 Future<void> _handleHive() async {
